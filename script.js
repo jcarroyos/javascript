@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Estado de la aplicación
     const app = {
         currentScene: 1,
-        totalScenes: 1, // Inicialmente solo tenemos una escena
+        totalScenes: 2, // Ahora tenemos dos escenas
         animations: {},
         elements: {
             prevBtn: document.getElementById('prev-btn'),
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         
         // Animación para Caperucita (triángulo rojo)
-        scene1Timeline.fromTo(".caperucita-triangle", 
+        scene1Timeline.fromTo("#scene-1 .caperucita-triangle", 
             { 
                 opacity: 0, 
                 y: 50,
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         
         // Animación del texto
-        scene1Timeline.fromTo(".scene-text", 
+        scene1Timeline.fromTo("#scene-1 .scene-text", 
             { 
                 opacity: 0, 
                 y: 20 
@@ -75,6 +75,62 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Guardar la timeline en el estado de la app
         app.animations.scene1 = scene1Timeline;
+        
+        // Timeline para la segunda escena
+        const scene2Timeline = gsap.timeline({
+            paused: true,
+            defaults: {
+                duration: 0.8,
+                ease: "power1.out"
+            }
+        });
+        
+        // Animación del fondo (césped) para la segunda escena
+        scene2Timeline.fromTo("#grass-layer-2", 
+            { opacity: 0 },
+            { opacity: 1 }
+        );
+        
+        // Animación inicial para Caperucita (triángulo rojo) en la segunda escena
+        scene2Timeline.fromTo("#scene-2 .caperucita-triangle", 
+            { 
+                opacity: 0, 
+                x: 0,
+                y: 0,
+                rotation: -10
+            },
+            { 
+                opacity: 1, 
+                x: 0,
+                y: 0,
+                rotation: 0
+            },
+            "-=0.4"
+        );
+        
+        // Animación del texto en la segunda escena
+        scene2Timeline.fromTo("#scene-2 .scene-text", 
+            { 
+                opacity: 0, 
+                y: 20 
+            },
+            { 
+                opacity: 1, 
+                y: 0 
+            },
+            "-=0.2"
+        );
+        
+        // Desplazamiento de izquierda a derecha (duración 5 segundos)
+        scene2Timeline.to("#scene-2 .caperucita-triangle", {
+            x: window.innerWidth - 180, // Ajustamos para que no se salga del contenedor
+            duration: 5,
+            ease: "none", // Movimiento constante
+            delay: 0.5 // Pequeña pausa antes de comenzar el movimiento
+        });
+        
+        // Guardar la timeline de la segunda escena
+        app.animations.scene2 = scene2Timeline;
         
         // Animación para el título principal
         gsap.fromTo(".main-title", 
@@ -125,8 +181,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function navigateToScene(sceneNum) {
         if (sceneNum === app.currentScene) return;
         
+        // Ocultar escena actual
+        document.getElementById(`scene-${app.currentScene}`).style.display = 'none';
+        
         // Actualizar estado
         app.currentScene = sceneNum;
+        
+        // Mostrar nueva escena
+        document.getElementById(`scene-${app.currentScene}`).style.display = 'flex';
         
         // Actualizar los botones de navegación
         updateNavigationButtons();
@@ -175,24 +237,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Añadir efecto de hover utilizando GSAP
-    const caperucitaElement = document.querySelector('.caperucita-triangle');
+    const caperucitaElements = document.querySelectorAll('.caperucita-triangle');
     
-    // Usar GSAP para efectos de hover
-    caperucitaElement.addEventListener('mouseenter', () => {
-        gsap.to(caperucitaElement, { 
-            scale: 1.2, 
-            rotation: 5, 
-            duration: 0.3, 
-            ease: "power1.out" 
+    // Usar GSAP para efectos de hover en todos los triángulos de Caperucita
+    caperucitaElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            gsap.to(element, { 
+                scale: 1.2, 
+                rotation: 5, 
+                duration: 0.3, 
+                ease: "power1.out" 
+            });
         });
-    });
-    
-    caperucitaElement.addEventListener('mouseleave', () => {
-        gsap.to(caperucitaElement, { 
-            scale: 1, 
-            rotation: 0, 
-            duration: 0.3, 
-            ease: "power1.out" 
+        
+        element.addEventListener('mouseleave', () => {
+            gsap.to(element, { 
+                scale: 1, 
+                rotation: 0, 
+                duration: 0.3, 
+                ease: "power1.out" 
+            });
         });
     });
 });

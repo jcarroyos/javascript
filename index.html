@@ -31,6 +31,22 @@
                 </div>
             </div>
             
+            <!-- Escena 2: Caperucita avanzando por el bosque -->
+            <div class="scene" id="scene-2" style="display: none;">
+                <div class="scene-layers">
+                    <!-- Capa 1: Fondo verde (césped) - Igual que primera escena -->
+                    <div class="layer" id="grass-layer-2"></div>
+                    <!-- Capa 2: Caperucita (triángulo rojo) con movimiento -->
+                    <div class="layer" id="caperucita-layer-2">
+                        <div class="caperucita-triangle"></div>
+                    </div>
+                </div>
+                <div class="scene-text">
+                    <h2>Adentrándose en el bosque</h2>
+                    <p>Caperucita avanzaba decidida por el sendero del bosque...</p>
+                </div>
+            </div>
+            
             <!-- Aquí irán más escenas conforme avancemos -->
         </div>
         
@@ -39,6 +55,7 @@
             <button id="prev-btn" class="nav-btn" disabled>Anterior</button>
             <div class="scene-indicators">
                 <span class="indicator active" data-scene="1"></span>
+                <span class="indicator" data-scene="2"></span>
                 <!-- Más indicadores de escenas se añadirán dinámicamente -->
             </div>
             <button id="next-btn" class="nav-btn">Siguiente</button>
