@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caperucita Roja - Historia Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Importando la librería GSAP y plugins necesarios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="main-title">Caperucita Roja</h1>
+        
+        <!-- Contenedor principal de escenas -->
+        <div id="scenes-container">
+            <!-- Escena 1: Caperucita en el bosque -->
+            <div class="scene" id="scene-1">
+                <div class="scene-layers">
+                    <!-- Capa 1: Fondo verde (césped) -->
+                    <div class="layer" id="grass-layer"></div>
+                    <!-- Capa 2: Caperucita (triángulo rojo) -->
+                    <div class="layer" id="caperucita-layer">
+                        <div class="caperucita-triangle"></div>
+                    </div>
+                </div>
+                <div class="scene-text">
+                    <h2>El comienzo del viaje</h2>
+                    <p>Caperucita Roja se preparaba para adentrarse en el bosque...</p>
+                </div>
+            </div>
+            
+            <!-- Aquí irán más escenas conforme avancemos -->
+        </div>
+        
+        <!-- Navegación entre escenas -->
+        <div class="scene-navigation">
+            <button id="prev-btn" class="nav-btn" disabled>Anterior</button>
+            <div class="scene-indicators">
+                <span class="indicator active" data-scene="1"></span>
+                <!-- Más indicadores de escenas se añadirán dinámicamente -->
+            </div>
+            <button id="next-btn" class="nav-btn">Siguiente</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

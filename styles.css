@@ -1,0 +1,163 @@
+/* Estilos base para el proyecto de Caperucita Roja */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
+
+.main-title {
+    color: #e74c3c;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para las escenas */
+#scenes-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.scene {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scene-layers {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* Capa de césped con retícula verde */
+#grass-layer {
+    background-color: #7fba00;
+    background-image: 
+        linear-gradient(0deg, rgba(255,255,255,0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: 1;
+}
+
+/* Capa del personaje Caperucita (triángulo rojo) */
+#caperucita-layer {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caperucita-triangle {
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #e74c3c;
+    opacity: 0; /* Inicialmente invisible para la animación */
+    transform: translateY(50px); /* Posición inicial para la animación */
+}
+
+.scene-text {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    z-index: 10;
+    height: 20%;
+}
+
+.scene-text h2 {
+    margin-bottom: 10px;
+    color: #e74c3c;
+}
+
+.scene-text p {
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Navegación entre escenas */
+.scene-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.nav-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+.scene-indicators {
+    display: flex;
+    gap: 10px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator.active {
+    background-color: #e74c3c;
+    transform: scale(1.2);
+}
